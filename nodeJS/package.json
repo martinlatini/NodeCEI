@@ -1,0 +1,14 @@
+{
+  "name": "ejercicio-1",
+  "version": "1.0.0",
+  "description": "ejercicio node fullstack",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Martin Latini",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+}
