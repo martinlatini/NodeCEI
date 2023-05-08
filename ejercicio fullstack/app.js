@@ -28,7 +28,7 @@ app.put("/tasks/:id", (req, res) => {
   const actulizarNombre = req.body.name;
   const actualizarDescripcion = req.body.descripcion;
   const obj = { actulizarNombre, actualizarDescripcion };
-  arrTareas.push(actualizarTarea);
+  arrTareas.push(obj);
   res.status(200).send(`tarea ${id} actualizada`);
 });
 
