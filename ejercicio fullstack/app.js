@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const app = express();
+app.use(bodyParser.json());
+app.use("/files/", express.static("public"));
 
 let arrTareas = [];
 
@@ -13,28 +15,41 @@ app.get("/", (req, res) => {
   res.status(200).send(arrTareas);
 });
 
-app.use(bodyParser.json());
-
 app.post("/new-task/", (req, res) => {
   const tarea = req.body.name;
   const descTarea = req.body.descripcion;
   const obj = { tarea, descTarea };
-  arrTareas.push(obj);
-  res.status(201).send(`Tarea creada con la tarea ${tarea}, ${descTarea}`);
+  if (tarea) {
+    arrTareas.push(obj);
+    res.status(201).send(`Tarea creada con la tarea ${tarea}, ${descTarea}`);
+  } else {
+    res.status(400).send("es obligatorio indicar una tarea");
+  }
 });
 
 app.put("/tasks/:id", (req, res) => {
-  const id = req.params.id;
-  const actulizarNombre = req.body.name;
-  const actualizarDescripcion = req.body.descripcion;
-  const obj = { actulizarNombre, actualizarDescripcion };
-  arrTareas.push(obj);
+  const id = parseInt(req.params.id);
+  if (Number.isNaN(id) || arrTareas[id] === undefined) {
+    res.status(400).send("el id de la tarea no es un numero o no existe.");
+    return;
+  }
+  const tarea = req.body.name;
+  if (!tarea) {
+    res.status(400).send("La propiedad tarea del body no tiene valor");
+    return;
+  }
+  const descTarea = req.body.descripcion;
+  const obj = { tarea, descTarea };
+  arrTareas[id] = obj;
   res.status(200).send(`tarea ${id} actualizada`);
 });
 
-app.delete("/tasks/delete/:id", (req, res) => {
-  const id = req.params.id;
-  const indexID = arrTareas.indexOf(id);
-  arrTareas.splice(indexID, 1);
+app.delete("/tasks/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  if (Number.isNaN(id) || arrTareas[id] === undefined) {
+    res.status(400).send("el id de la tarea no es un numero o no existe.");
+    return;
+  }
+  arrTareas.splice(id, 1);
   res.send(`Tarea ${id} eliminada con exito`);
 });
