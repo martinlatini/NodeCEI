@@ -1,5 +1,4 @@
-const list = document.getElementById("list");
-const listItem = document.createElement("li");
+const container = document.getElementById("container");
 
 const options = {
   method: "GET",
@@ -9,22 +8,27 @@ const options = {
   },
 };
 
-let arrayTareas = async function getApi(options) {
+async function getApi(options) {
   let response = await fetch("http://localhost:3000", options);
   let data = await response.json();
   return data;
-};
-
-let array = arrayTareas(options);
-
-for (let i = 0; i < arr.length; i++) {
-  const element = arr[i];
-  element.then((result) => {
-    list.append(result.tarea, listItem);
-  });
 }
-/* 
-let response = arr.then((result) => {
-  list.append(result[0], listItem);
+
+let array = getApi(options);
+
+array.then((result) => {
+  for (let i = 0; i < result.length; i++) {
+    const div = document.createElement("div");
+    const h1 = document.createElement("h1");
+    const par = document.createElement("p");
+    const element = result[i];
+    h1.append(document.createTextNode(element.tarea));
+    div.append(h1);
+    h1.classList.add("tarea");
+    par.append(document.createTextNode(element.descTarea));
+    div.append(par);
+    par.classList.add("desc-tarea");
+    container.append(div);
+    div.classList.add("card");
+  }
 });
- */

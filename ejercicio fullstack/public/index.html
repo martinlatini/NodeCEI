@@ -5,13 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App de tareas</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Gestiona tus tareas</h1>
-    <div class="list-container">
-        <ul id="list">
-        </ul>
+    <h1 class="title">Gestiona tus tareas</h1>
+    <form action="/new-task/" method="post">
+        <input type="text" name="tarea" id="tareas" placeholder="Introduce tu tarea">
+        <input type="text" name="desc-tarea" id="desc-tareas" placeholder="Introduce la descripcion de tu tarea">
+        <input id="submit" type="submit" value="Cargar tarea">
+    </form>
+    <div id="container">
+        
+
     </div>
+    <script src="cargar_tareas.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

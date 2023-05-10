@@ -1,0 +1,81 @@
+:root {
+    --dark: #2C3333;
+    --dark-green: #2E4F4F;
+    --blue: #0E8388;
+    --light-blue: #CBE4DE;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: linear-gradient(to right, var(--dark-green), var(--blue))
+}
+
+.title {
+    color: rgb(230, 230, 230);
+    text-align: center;
+}
+
+.title {
+    margin: 2rem 0 2rem 0;
+}
+
+.tarea, .desc-tarea {
+    color: var(--dark);
+    text-align: center;
+}
+
+#container {
+    display: flex;
+    max-width: 100vw;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.card {
+    width: max-content;
+    padding: 5rem;
+    background-color: var(--light-blue);
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+input[type="text"] {
+    height: 2rem;
+    width: 25%;
+    border-radius: 8px;
+    border: none;
+}
+
+::placeholder { 
+    padding: 0 1rem;
+  }
+
+input[type="submit"] {
+    width: 10rem;
+    border: 1px solid var(--light-blue);
+    background-color: #ffffff00;
+    color: rgb(230, 230, 230);
+    border-radius: 8px;
+    
+}
+
+input[type="submit"]:hover {
+    background-color: var(--light-blue);
+    color: var(--dark);
+    font-weight: 600;
+}
+  
+
+
