@@ -21,7 +21,9 @@ app.post("/new-task/", (req, res) => {
   const obj = { tarea, descTarea };
   if (tarea) {
     arrTareas.push(obj);
-    res.status(201).send(`Tarea creada con la tarea ${tarea}, ${descTarea}`);
+    res
+      .status(201)
+      .send(`Tarea ${tarea} creada, con la descripcion:${descTarea}`);
   } else {
     res.status(400).send("es obligatorio indicar una tarea");
   }

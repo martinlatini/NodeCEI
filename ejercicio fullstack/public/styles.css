@@ -24,7 +24,8 @@ body {
     margin: 2rem 0 2rem 0;
 }
 
-.tarea, .desc-tarea {
+.tarea,
+.desc-tarea {
     color: var(--dark);
     text-align: center;
 }
@@ -58,24 +59,21 @@ input[type="text"] {
     border: none;
 }
 
-::placeholder { 
+::placeholder {
     padding: 0 1rem;
-  }
+}
 
-input[type="submit"] {
+button {
     width: 10rem;
     border: 1px solid var(--light-blue);
     background-color: #ffffff00;
     color: rgb(230, 230, 230);
     border-radius: 8px;
-    
+
 }
 
-input[type="submit"]:hover {
+button:hover {
     background-color: var(--light-blue);
     color: var(--dark);
     font-weight: 600;
 }
-  
-
-
