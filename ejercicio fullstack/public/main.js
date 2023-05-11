@@ -39,15 +39,15 @@ array.then((result) => {
     const indexOfBtn = btnDelete.length - 1;
     btnDelete[indexOfBtn].setAttribute("id", `${indexOfBtn}`);
 
-    for (let j = 0; j < btnDelete.length; j++) {
+    /*  for (let j = 0; j < btnDelete.length; j++) {
       const value = btnDelete[j].getAttribute("id");
       const element = btnDelete[j];
-    }
+    } */
   }
 });
 
-function deleteTarea(item) {
+/* function deleteTarea(item) {
   return fetch(`http://localhost:3000/tasks/${item}`, {
     method: "DELETE",
-  }).then((response) => response.json());
-}
+  }).then((response) => response);
+} */
