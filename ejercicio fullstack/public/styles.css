@@ -28,7 +28,9 @@ body {
 .desc-tarea {
     color: var(--dark);
     text-align: center;
+    overflow-wrap: break-word;
 }
+
 
 #container {
     display: flex;
@@ -38,7 +40,7 @@ body {
 }
 
 .card {
-    width: max-content;
+    max-width: 20rem;
     padding: 5rem;
     background-color: var(--light-blue);
     margin: 0 auto;
@@ -77,3 +79,10 @@ button:hover {
     color: var(--dark);
     font-weight: 600;
 }
+
+.btn-delete {
+    border: 1px solid black;
+    color: var(--dark);
+    margin: 4rem 0 0 0;
+}
+
