@@ -1,4 +1,6 @@
 const submit = document.getElementById("btn");
+const container = document.getElementById("container");
+const btnDelete = document.getElementsByTagName("button");
 
 function getTarea(name, descripcion) {
   let obj = { name, descripcion };
@@ -14,8 +16,6 @@ const post = async () => {
       headers: { "Content-Type": "application/json" },
     });
 
-    const container = document.getElementById("container");
-
     const options = {
       method: "GET",
       body: JSON.stringify(),
@@ -23,36 +23,13 @@ const post = async () => {
         "Content-Type": "application/json",
       },
     };
-
-    async function getApi(options) {
-      let response = await fetch("http://localhost:3000", options);
-      let data = await response.json();
-      return data;
-    }
+    document.getElementById("tareas").value = "";
+    document.getElementById("desc-tareas").value = "";
 
     let array = getApi(options);
 
     array.then((result) => {
-      const div = document.createElement("div");
-      const h1 = document.createElement("h1");
-      const par = document.createElement("p");
-      const btn = document.createElement("button");
-      const element = result[result.length - 1];
-      h1.append(document.createTextNode(element.tarea));
-      div.append(h1);
-      h1.classList.add("tarea");
-      par.append(document.createTextNode(element.descTarea));
-      div.append(par);
-      par.classList.add("desc-tarea");
-      container.append(div);
-      div.classList.add("card");
-      btn.append(document.createTextNode("Eliminar tarea"));
-      div.append(btn);
-      btn.classList.add("btn-delete");
-
-      const btnDelete = document.getElementsByClassName("btn-delete");
-      const indexOfBtn = btnDelete.length - 1;
-      btnDelete[indexOfBtn].setAttribute("id", `${indexOfBtn}`);
+      create(result);
     });
   } catch (error) {
     console.error(error);
@@ -60,3 +37,44 @@ const post = async () => {
 };
 
 submit.addEventListener("click", post);
+
+function deleteTarea(item) {
+  return fetch(`http://localhost:3000/tasks/${item}`, {
+    method: "DELETE",
+  });
+}
+
+async function getApi(options) {
+  let response = await fetch("http://localhost:3000", options);
+  let data = await response.json();
+  return data;
+}
+
+function create(result) {
+  const div = document.createElement("div");
+  const h1 = document.createElement("h1");
+  const par = document.createElement("p");
+  const btn = document.createElement("button");
+  const element = result[result.length - 1];
+  h1.append(document.createTextNode(element.tarea));
+  div.append(h1);
+  h1.classList.add("tarea");
+  par.append(document.createTextNode(element.descTarea));
+  div.append(par);
+  par.classList.add("desc-tarea");
+  container.append(div);
+  div.classList.add("card");
+  btn.append(document.createTextNode("Eliminar tarea"));
+  div.append(btn);
+  btn.classList.add("btn-delete");
+
+  const btnDelete = document.getElementsByClassName("btn-delete");
+  const indexOfBtn = btnDelete.length - 1;
+  btnDelete[indexOfBtn].setAttribute("id", `${indexOfBtn}`);
+  div.setAttribute("id", `div-${indexOfBtn}`);
+  btn.addEventListener("click", () => {
+    deleteTarea(indexOfBtn);
+    const divID = document.getElementById(`div-${indexOfBtn}`);
+    divID.remove();
+  });
+}

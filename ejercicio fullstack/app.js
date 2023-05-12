@@ -1,5 +1,5 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+import express from "express";
+import bodyParser from "body-parser";
 
 const app = express();
 app.use(bodyParser.json());
@@ -13,6 +13,17 @@ app.listen(3000, () => {
 
 app.get("/", (req, res) => {
   res.status(200).send(arrTareas);
+});
+
+app.get("/tasks/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  if (Number.isNaN(id) || arrTareas[id] === undefined) {
+    res.status(400).send("el id de la tarea no es un numero o no existe.");
+    return;
+  }
+
+  const tarea = arrTareas[id];
+  res.status(200).send(tarea);
 });
 
 app.post("/new-task/", (req, res) => {
