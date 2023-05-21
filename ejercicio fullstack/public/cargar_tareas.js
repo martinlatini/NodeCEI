@@ -55,7 +55,9 @@ function create(result) {
   const h1 = document.createElement("h1");
   const par = document.createElement("p");
   const btn = document.createElement("button");
+  const btnEdit = document.createElement("button");
   const element = result[result.length - 1];
+
   h1.append(document.createTextNode(element.tarea));
   div.append(h1);
   h1.classList.add("tarea");
@@ -67,6 +69,9 @@ function create(result) {
   btn.append(document.createTextNode("Eliminar tarea"));
   div.append(btn);
   btn.classList.add("btn-delete");
+  btnEdit.append(document.createTextNode("editar tarea"));
+  div.append(btnEdit);
+  btnEdit.classList.add("btn-edit");
 
   const btnDelete = document.getElementsByClassName("btn-delete");
   const indexOfBtn = btnDelete.length - 1;
@@ -76,5 +81,11 @@ function create(result) {
     deleteTarea(indexOfBtn);
     const divID = document.getElementById(`div-${indexOfBtn}`);
     divID.remove();
+  });
+
+  const btnsEdit = document.getElementsByClassName("btn-edit");
+  btnsEdit[indexOfBtn].setAttribute("id", `${indexOfBtn}`);
+  btnEdit.addEventListener("click", () => {
+    window.location.href = "http://localhost:3000/files/edit-task.html";
   });
 }

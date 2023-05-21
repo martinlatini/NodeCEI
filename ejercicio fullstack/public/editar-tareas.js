@@ -1,3 +1,8 @@
+function getTarea(name, descripcion) {
+  let obj = { name, descripcion };
+  return obj;
+}
+
 async function editarTarea(id) {
   const inputTareas = document.getElementById("tareas").value;
   const inputDescTareas = document.getElementById("desc-tareas").value;
@@ -7,5 +12,6 @@ async function editarTarea(id) {
     headers: { "Content-Type": "application/json" },
   });
   let data = response.json();
+  console.log("putted correctly");
   return data;
 }
