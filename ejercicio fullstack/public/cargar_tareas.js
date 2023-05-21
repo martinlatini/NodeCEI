@@ -54,6 +54,7 @@ function create(result) {
   const div = document.createElement("div");
   const h1 = document.createElement("h1");
   const par = document.createElement("p");
+  const par2 = document.createElement("p");
   const btn = document.createElement("button");
   const btnEdit = document.createElement("button");
   const element = result[result.length - 1];
@@ -83,8 +84,10 @@ function create(result) {
     divID.remove();
   });
 
-  const btnsEdit = document.getElementsByClassName("btn-edit");
-  btnsEdit[indexOfBtn].setAttribute("id", `${indexOfBtn}`);
+  par2.append(document.createTextNode(`Tarea numero: ${indexOfBtn}`));
+  div.append(par2);
+  par2.classList.add("identificador");
+
   btnEdit.addEventListener("click", () => {
     window.location.href = "http://localhost:3000/files/edit-task.html";
   });

@@ -31,6 +31,11 @@ body {
     overflow-wrap: break-word;
 }
 
+.tarea {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
 
 #container {
     display: flex;
@@ -41,10 +46,12 @@ body {
 
 .card {
     max-width: 20rem;
-    padding: 5rem;
     background-color: var(--light-blue);
     margin: 0 auto;
     border-radius: 8px;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 2rem;
 }
 
 form {
@@ -86,3 +93,13 @@ button:hover {
     margin: 4rem 0 0 0;
 }
 
+.btn-edit {
+    border: 1px solid black;
+    color: var(--dark);
+    margin: 1rem 0 0 0;
+}
+
+.identificador {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
