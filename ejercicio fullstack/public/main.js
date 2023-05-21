@@ -19,9 +19,3 @@ array.then((result) => {
     create(result);
   }
 });
-
-function deleteTarea(item) {
-  return fetch(`http://localhost:3000/tasks/${item}`, {
-    method: "DELETE",
-  });
-}
